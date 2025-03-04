@@ -1,0 +1,101 @@
+/* Chat app styling */
+
+:root{
+    /*--purple: purple;*/
+    --purple: rgba(140, 4, 252, 0.966); 
+    --purple1: purple;
+    --purple2: rgb(91, 4, 253);
+    --purple3: rgb(154, 117, 223);
+    --purple4: indigo;
+    --purple5: maroon;
+    --purple6: lavender;
+    --purple7: violet;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    width: 400px;
+    background: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background: var(--purple);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+}
+
+#messages {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#messages li {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+/* Messages sent by the user */
+.sent {
+    background: var(--purple);
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+}
+
+/* Messages received from others */
+.received {
+    background: #e0e0e0;
+    color: black;
+    align-self: flex-start;
+}
+ 
+.input-container {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+.input-container button {
+    background: var(--purple);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.input-container button:hover {
+    background: var(--purple);
+}
