@@ -6,13 +6,17 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 io.on('connection', (socket) => {
     console.log('A user connected');
 
+    socket.on("join room", (room) => {
+        socket.join(room);
+    });
+
     socket.on('chat message', (msg) => {
-        io.emit('chat message', msg); // Send message to all clients
+        io.to(msg.room).emit('chat message', msg);
     });
 
     socket.on('disconnect', () => {

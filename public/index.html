@@ -4,40 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
-    <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
+
     <div class="chat-container">
-        <header>Chat Room</header>
-        <ul id="messages"></ul>
-        <div class="input-container">
-            <input id="messageInput" type="text" placeholder="Message...">
+        <!-- Sidebar for different chats -->
+        <div class="sidebar">
+            <h2>Chats</h2>
+            <ul id="chatList">
+                <li onclick="switchChat('General')">General</li>
+                <li onclick="switchChat('Friends')">Friends</li>
+                <li onclick="switchChat('Work')">Work</li>
+            </ul>
+        </div>
+
+        <!-- Chat messages area -->
+        <div class="chat-box">
+            <div class="header">
+                <h2 id="currentChat">General</h2>
+                <button id="darkModeToggle">🌙</button>
+            </div>
+            <ul id="messages"></ul>
+            <input id="messageInput" type="text" placeholder="Type a message..." />
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
 
-    <script>
-        const socket = io();
-        let username = prompt("Enter your name:");
-
-        // Send message with username
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            if (input.value.trim()) {
-                socket.emit('chat message', { user: username, text: input.value });
-                input.value = '';
-            }
-        }
-
-        // Receive messages
-        socket.on('chat message', (msg) => {
-            const li = document.createElement('li');
-            li.classList.add(msg.user === username ? 'sent' : 'received');
-            li.innerHTML = `<strong>${msg.user}:</strong> ${msg.text}`;
-            document.getElementById('messages').appendChild(li);
-            li.scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
 </body>
 </html>
